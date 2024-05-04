@@ -19,7 +19,7 @@ const page = async () => {
     <div>
       <Header />
       <Hero />
-      <Main />
+      <Main posts={posts} />
       <Footer />
     </div>
   );
