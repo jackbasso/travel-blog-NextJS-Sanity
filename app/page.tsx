@@ -14,7 +14,7 @@ const query = groq`
 `;
 
 const page = async () => {
-  const posts = await client.fetch(query);
+  const posts = await client.fetch(query, { cache: "no-store" });
   return (
     <div>
       <Header />

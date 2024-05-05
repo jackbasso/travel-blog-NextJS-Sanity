@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { urlForImage } from "@/sanity/lib/image";
+import Route from "../Route";
 
 type Props = {
   posts: Post[];
@@ -16,24 +17,26 @@ const Featured = ({ posts }: Props) => {
     <div className="flex">
       <div className="md:mx-6 lg:mx-14 mb-5">
         {filteredPost.map((post) => (
-          <div key={post._id} className="border border-gray-200 rounded mb-3">
-            <div className="relative w-full h-80">
-              <Image
-                fill
-                src={urlForImage(post.mainImage)}
-                alt="postImage"
-                className="object-cover object-left lg:object-center"
-              />
+          <Route route="/blog/post1">
+            <div key={post._id} className="border border-gray-200 rounded mb-3">
+              <div className="relative w-full h-80">
+                <Image
+                  fill
+                  src={urlForImage(post.mainImage)}
+                  alt="postImage"
+                  className="object-cover object-left lg:object-center"
+                />
+              </div>
+              <div className="mx-5 pb-4">
+                <h2 className="mt-5 mb-2 font-semibold text-[#E7493F]">{post.title}</h2>
+                <p className="line-clamp-6">{post.description}</p>
+              </div>
             </div>
-            <div className="mx-5 pb-4">
-              <h2 className="mt-5 mb-2 font-semibold text-[#E7493F]">{post.title}</h2>
-              <p className="line-clamp-6">{post._updatedAt}</p>
-            </div>
-          </div>
+          </Route>
         ))}
       </div>
       <div className="p-2">
-        <h2 className="font-extrabold font-sans text-4xl text-center mb-10 mr-2 bg-[url('../public/assets/bgimg.jpg')] bg-clip-text text-transparent">
+        <h2 className="font-extrabold font-sans text-4xl text-center mb-10 mr-2 bg-[url('../public/assets/boat.jpg')] bg-clip-text text-transparent">
           TRAIN <br />
           ADVENTURE <br />
           ROUTE
