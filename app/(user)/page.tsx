@@ -18,15 +18,8 @@ const page = async () => {
   const posts = await client.fetch(query, { cache: "no-store" });
   return (
     <div>
-      <Header />
       <Hero />
       <Main posts={posts} />
-      <div className="hidden md:block">
-        <Footer />
-      </div>
-      <div className="md:hidden">
-        <FooterMobile />
-      </div>
     </div>
   );
 };

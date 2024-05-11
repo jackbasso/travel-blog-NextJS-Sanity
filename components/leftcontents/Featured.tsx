@@ -17,7 +17,7 @@ const Featured = ({ posts }: Props) => {
     <div className="flex">
       <div className="md:mx-6 lg:mx-14 mb-5">
         {filteredPost.map((post) => (
-          <Route route="/blog/post1">
+          <Route route={`/blog/${post.slug.current}`}>
             <div key={post._id} className="border border-gray-200 rounded mb-3">
               <div className="relative w-full h-80">
                 <Image
