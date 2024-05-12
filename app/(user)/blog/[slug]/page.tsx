@@ -6,6 +6,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import { RichText } from "@/components/RichText";
 import MoreBlogs from "@/components/MoreBlogs";
+import Comments from "@/components/Comments";
 
 const page = async ({ params }: { params: { slug: string } }) => {
   const query = groq`*[_type == 'post' && slug.current == $slug][0] {
@@ -48,6 +49,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
       <div className="max-w-5xl mx-auto my-10 px-5 md:px-10">
         <PortableText value={post.body} components={RichText} />
         <MoreBlogs posts={posts} post={post} />
+        <Comments />
       </div>
     </div>
   );
