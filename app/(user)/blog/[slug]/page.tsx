@@ -12,13 +12,16 @@ const page = async ({ params }: { params: { slug: string } }) => {
   const query = groq`*[_type == 'post' && slug.current == $slug][0] {
     ...,
     author->,
+    'comments': *[
+      _type == 'comment' &&
+      post._ref == ^._id && approved == true],
   }`;
   const allPostsQuery = groq`*[_type == "post"] {
     ...,
     author->,
   } | order(_createdAt desc)`;
 
-  const post: Post = await client.fetch(query, params);
+  const post: Post = await client.fetch(query, params, { next: { revalidate: 10 } });
   const posts = await client.fetch(allPostsQuery);
 
   return (
@@ -49,7 +52,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
       <div className="max-w-5xl mx-auto my-10 px-5 md:px-10">
         <PortableText value={post.body} components={RichText} />
         <MoreBlogs posts={posts} post={post} />
-        <Comments />
+        <Comments post={post} />
       </div>
     </div>
   );
