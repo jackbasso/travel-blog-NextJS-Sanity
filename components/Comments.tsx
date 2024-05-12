@@ -8,7 +8,7 @@ type Input = {
   comment: string;
 };
 
-const Comments = () => {
+const Comments = ({ post }: Props) => {
   const {
     register,
     handleSubmit,
@@ -17,7 +17,16 @@ const Comments = () => {
 
   //HANDLES THE FORM SUBMIT
   const onSubmit: SubmitHandler<Input> = (data) => {
-    console.log(data.name);
+    fetch("/api/createComment", {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then(() => {
+        console.log(data);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -60,7 +69,7 @@ const Comments = () => {
         {errors.comment && <span className="text-red-500">The comment field is required!</span>}
       </div>
 
-      <input {...register("_id")} type="hidden" name="_id" />
+      <input {...register("_id")} type="hidden" name="_id" value={post._id} />
 
       <input
         type="submit"
