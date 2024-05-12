@@ -9,9 +9,9 @@ type Props = {
 
 const BlogList = ({ posts }: Props) => {
   return (
-    <div className="md:mx-14 my-10">            
+    <div className="md:mx-14 my-10">
       {posts.map((post) => (
-        <Route route={`/blog/${post.slug.current}`}>>
+        <Route route={`/blog/${post.slug.current}`}>
           <div key={post._id} className="border border-gray-200 rounded mb-3">
             <div className="relative w-full h-80">
               <Image

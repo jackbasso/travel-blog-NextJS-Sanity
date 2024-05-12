@@ -17,7 +17,7 @@ const Recommended = ({ posts }: Props) => {
       </div>
       <div>
         {posts.slice(0, 3).map((post) => (
-          <Route route="/blog/post1">
+          <Route route={`/blog/${post._id}`}>
             <div key={post._id} className="flex border border-gray-200 h-32 rounded-lg mb-3">
               <div className="relative w-32 h-32 drop-shadow-xl basis-[40%]">
                 <Image

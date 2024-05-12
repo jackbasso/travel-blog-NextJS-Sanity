@@ -17,7 +17,7 @@ const Header = () => {
       </Link>
 
       <div className="flex space-x-3">
-        <p>TRAVEL BLOG</p>
+        <Link href="/blog">TRAVEL BLOG</Link>
         <p>TRAVEL REVIEWS</p>
         <p>ABOUT</p>
       </div>
